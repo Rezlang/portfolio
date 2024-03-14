@@ -1,0 +1,137 @@
+---
+interface Skill {
+  name: string;
+  icon: string; // URL to the skill's logo image
+}
+
+interface Props {
+  title: string;
+  body: string;
+  href: string;
+  imgPath: string;
+  skills: Skill[];
+}
+
+const { href, title, body, skills, imgPath } = Astro.props;
+---
+
+<li class="link-card">
+	<a href={href}>
+	  <h2>
+		{title}
+		<span>&rarr;</span>
+	  </h2>
+	  <img src={imgPath} alt="Image Description" class="card-image" />
+	  <p>{body}</p>
+	  <div class="skills-container">
+		{skills.map(skill => (
+		  <div class="skill">
+			<div class="skill-icon-container">
+			  <img class="skill-icon" src={skill.icon} alt={skill.name} title={skill.name} width="24" height="24" />
+			</div>
+			<div class="skill-name-container">{skill.name}</div>
+		  </div>
+		))}
+	  </div>
+	</a>
+  </li>
+  
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+	
+	.card-image {
+		display: block; /* Ensures the image is a block-level element */
+		max-width: 90%; /* Limits the image width to 80% of its parent */
+		height: auto; /* Maintains aspect ratio */
+		margin: 0 auto;
+	}
+
+	.skill-icon {
+		border-radius: 4px;
+		padding: 4px;
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+  
+	.skill-name-container {
+		display: none; /* Initially hide the skill name */
+		text-align: center;
+		font-size: .5rem;
+	}
+
+	.skill-icon-container:hover + .skill-name-container {
+		display: block; /* Show the skill name when icon is hovered */
+	}
+
+	.skills-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.skill-icon-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.skill {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+  
+	.skill-icon:hover {
+	  background-color: rgba(255, 255, 255, 0.1);
+	  color: white;
+	}
+  
+	.link-card {
+	  list-style: none;
+	  display: flex;
+	  padding: 1%;
+	  background-color: rgba(35, 38, 45, 1);
+	  border-radius: 7px;
+	  background-position: 100%;
+	  transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+	  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	  opacity: .7;
+	}
+  
+	.link-card > a {
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: space-around;
+	  width: 100%;
+	  text-decoration: none;
+	  line-height: 1.4;
+	  padding: 1%;
+	  border-radius: 7px;
+	  color: white;
+	  background-color: #23262d;
+	  transition: background-color 0.3s ease; /* Added transition for background-color */
+	}
+  
+	.link-card:is(:hover, :focus-within) {
+	  background-image: var(--accent-gradient-dark);
+	}
+  
+	.link-card:is(:hover, :focus-within) > a {
+	  background-color: rgba(35, 38, 45, 0.6); /* Applied transparency to the card content on hover */
+	}
+  
+	h2 {
+	  color: rgb(var(--accent-light));
+	  margin: 1%;
+	  font-size: 1.25rem;
+	  font-family: "Roboto Mono", monospace;
+  	font-weight: heavy;
+	}
+  
+	p {
+		align-self: center;
+	  margin: 2%;
+	  font-family: "Roboto Mono", monospace;
+  	font-weight: normal;
+	font-size: 1rem;
+	}
+  </style>

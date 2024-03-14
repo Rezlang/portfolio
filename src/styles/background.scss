@@ -1,0 +1,55 @@
+.background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background: #13151a;
+  display: block;
+  font-size: 52px;
+  color: transparent;
+
+  @mixin dots($count) {
+    $text-shadow: ();
+    @for $i from 0 through $count {
+      $text-shadow: $text-shadow,
+        (-.5 + (random()) * 3) + em (-.5 + (random()) * 3) + em 7px
+        hsla(random() * 360, 100%, 50%, .9);
+    }
+    text-shadow: $text-shadow;
+  }
+
+  &::before, &::after {
+    content: '.';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3em;
+    height: 3em;
+    mix-blend-mode: screen;
+    animation: move 44s infinite ease-in-out alternate;
+  }
+
+  &::before {
+    @include dots(40);
+    animation-duration: 44s;
+    animation-delay: -27s;
+  }
+
+  &::after {
+    @include dots(40);
+    animation-duration: 43s;
+    animation-delay: -32s;
+  }
+
+  @keyframes move {
+    from {
+      transform: rotate(0deg) scale(12) translateX(-20px);
+    }
+    to {
+      transform: rotate(360deg) scale(18) translateX(20px);
+    }
+  }
+}
