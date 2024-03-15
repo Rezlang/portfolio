@@ -51,34 +51,42 @@ const { href, title, body, skills, imgPath } = Astro.props;
 		padding: 4px;
 		transition: background-color 0.3s ease, color 0.3s ease;
 	}
-  
-	.skill-name-container {
-		display: none; /* Initially hide the skill name */
-		text-align: center;
-		font-size: .5rem;
-	}
-
-	.skill-icon-container:hover + .skill-name-container {
-		display: block; /* Show the skill name when icon is hovered */
-	}
 
 	.skills-container {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 8px;
 	}
+  
+	.skill {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 2%; /* Adjust the height based on the total height you want for the icon + label */
+	}
 
 	.skill-icon-container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		/* Ensure this container's size is appropriate for the icon */
 	}
 
-	.skill {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	.skill-name-container {
+		opacity: 0; /* Initially hide the skill name but reserve its space */
+		text-align: center;
+		font-size: .6rem;
+		transition: opacity 0.3s ease;
+		font-family: inhert;
 	}
+
+	.skill-icon-container:hover + .skill-name-container {
+		opacity: 1; /* Show the skill name when icon is hovered */
+	}
+
+/* You may need to adjust other styles to ensure they work well with the fixed height of the .skill element, 
+especially if you notice any alignment issues or if the space reserved for the label is not sufficient. */
+
   
 	.skill-icon:hover {
 	  background-color: rgba(255, 255, 255, 0.1);
@@ -107,7 +115,7 @@ const { href, title, body, skills, imgPath } = Astro.props;
 	  padding: 1%;
 	  border-radius: 7px;
 	  color: white;
-	  background-color: #23262d;
+	  background-color: rgb(var(card-background-grey));
 	  transition: background-color 0.3s ease; /* Added transition for background-color */
 	}
   
@@ -118,13 +126,19 @@ const { href, title, body, skills, imgPath } = Astro.props;
 	.link-card:is(:hover, :focus-within) > a {
 	  background-color: rgba(35, 38, 45, 0.6); /* Applied transparency to the card content on hover */
 	}
+
+	.link-card:hover h2 {
+		color: rgb(136, 58, 234);
+
+	}
   
 	h2 {
-	  color: rgb(var(--accent-light));
+	  color: rgb(var(--accent));
 	  margin: 1%;
 	  font-size: 1.25rem;
 	  font-family: "Roboto Mono", monospace;
-  	font-weight: heavy;
+  	  font-weight: heavy;
+	  transition: color 0.3s ease;
 	}
   
 	p {

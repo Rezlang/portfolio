@@ -26,6 +26,11 @@ const { title } = Astro.props;
 </html>
 <style is:global>
 	:root {
+		--card-background-grey: 35,38,45,0.7;
+		--card-background-purple: linear-gradient(
+			rgba(var(--accent-dark), 66%), 
+			rgba(var(--accent-dark), 33%)
+		);
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
@@ -39,7 +44,7 @@ const { title } = Astro.props;
 			45deg,
 			rgb(var(--accent)),
 			rgb(var(--accent-dark)) 30%,
-			#23262d 60%
+			rgb(var(card-background-grey)) 60%
 		);
 	}
 	html {

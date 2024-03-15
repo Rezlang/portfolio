@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
 
 .header {
+  width: 100%; /* Ensure full width */
   font-family: 'Roboto Mono', monospace;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 5%;
+  justify-content: flex-end; /* Adjusted to space-between for demonstration */
+  align-items: center; /* Align items vertically */
+  padding: 0 5%;
+}
+
+.logo {
+  display: flex;
+  align-items: flex-end;
 }
 
 .header a {

@@ -2,16 +2,22 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.jsx';
+import CardSwitcher from '../components/cardSwitcher.jsx'; // Adjust the import path according to your file structure
+import React from 'react';
+import ReactDOM from 'react-dom';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<Header />
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		<div class="headliner-container">
+			<span class="wave">👋</span>
+			<div class="headliner">
+				Josh is a multi-talented full stack developer, with a focus on deep learning, NLP, 
+				and Computer Vision. He is currently pursuing a bachelors of computer science at RPI.
+			</div>
+		</div>
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="https://docs.astro.build/"
@@ -30,13 +36,17 @@ import Header from '../components/Header.jsx';
 			/>
 			<Card
 				href="https://astro.build/integrations/"
-				title="Neural Coin"
+				title="Proof of Vision Token"
 				body="A dividend paying- Ethereum based- token that can be mined by classifying images"
 				skills={[
 					{
-					  name: 'Astro',
-					  icon: 'https://astro.build/assets/press/astro-icon-light-gradient.svg',
+					  name: 'Ethereum',
+					  icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029',
 					},
+					{
+						name: 'Solidity',
+						icon: 'https://docs.soliditylang.org/en/latest/_images/solidity_logo.svg'
+					}
 				  ]},
 				imgPath="../../blockchain.png"
 			/>
@@ -46,9 +56,13 @@ import Header from '../components/Header.jsx';
 				body="A personal weightlifting application"
 				skills={[
 					{
-					  name: 'Astro',
-					  icon: 'https://astro.build/assets/press/astro-icon-light-gradient.svg',
+					  name: 'Dart',
+					  icon: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/Dart_logo.png',
 					},
+					{
+						name: 'Flutter',
+						icon: 'https://storage.googleapis.com/cms-storage-bucket/4fd5520fe28ebf839174.svg'
+					}
 				  ]},
 				imgPath="../../lightweight.png"
 			/>
@@ -58,13 +72,23 @@ import Header from '../components/Header.jsx';
 				body="Assorted open source demos to play around with."
 				skills={[
 					{
-					  name: 'Astro',
-					  icon: 'https://astro.build/assets/press/astro-icon-light-gradient.svg',
+					  name: 'Pytorch',
+					  icon: 'https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg',
 					},
+					{
+						name: 'Numpy',
+						icon: 'https://raw.githubusercontent.com/numpy/numpy/64676baf423c3e1c53b37ae413c3ca6aaecc642a/branding/logo/logomark/numpylogoicon.svg'
+					},
+					{
+						name: 'OpenCV',
+						icon: 'https://github.com/opencv/opencv/wiki/logo/OpenCV_logo_no_text.png'
+					}
 				  ]},
 				imgPath="../../computerVision.png"
 			/>
 		</ul>
+		<CardSwitcher client:load />
+
 	</main>
 </Layout>
 
@@ -87,6 +111,28 @@ import Header from '../components/Header.jsx';
 		height: auto;
 		z-index: -1;
 	}
+    .wave {
+		font-size: 3rem;
+        animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+        animation-duration: 2.5s;        /* Change to speed up or slow down */
+        animation-iteration-count: infinite;  /* Never stop waving :) */
+        transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+        display: inline-block;
+		margin-left: 2%;
+		margin-right: 5%;
+    }
+
+    @keyframes wave-animation {
+        0% { transform: rotate( 0.0deg) }
+        10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+        20% { transform: rotate(-8.0deg) }
+        30% { transform: rotate(14.0deg) }
+        40% { transform: rotate(-4.0deg) }
+        50% { transform: rotate(10.0deg) }
+        60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+        100% { transform: rotate( 0.0deg) }
+    }
+
 	h1 {
 		font-size: 4rem;
 		font-weight: 700;
@@ -101,22 +147,25 @@ import Header from '../components/Header.jsx';
 		background-size: 400%;
 		background-position: 0%;
 	}
-	.instructions {
+	.headliner-container {
+		display: flex;
+		align-items: center;
 		margin-bottom: 2rem;
 		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
+		background: var(--card-background-purple);
+		padding: 1rem;
 		border-radius: 8px;
+		font-family: inhert;
+		font-size: 1.1rem;
 	}
-	.instructions code {
+	.headliner code {
 		font-size: 0.8em;
 		font-weight: bold;
 		background: rgba(var(--accent-light), 12%);
 		color: rgb(var(--accent-light));
 		border-radius: 4px;
-		padding: 0.3em 0.4em;
 	}
-	.instructions strong {
+	.headliner strong {
 		color: rgb(var(--accent-light));
 	}
 	.link-card-grid {
