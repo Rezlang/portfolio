@@ -36,11 +36,11 @@ const CardSwitcher = () => {
       }}>
       {/* Card on the left */}
           <div style={{
-              width: isMobile ? '80%' : '46%', textDecoration: 'none', lineHeight: '1.4',
-              padding: '1%', borderRadius: '7px', color: 'white',
+              width: isMobile ? '80%' : '38%', textDecoration: 'none', lineHeight: '1.4',
+              padding: '1% 5% 5% 5%', borderRadius: '7px', color: 'white',
               background: 'var(--card-background-purple)',
               boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
-              height: isMobile ? '40rem' : 'auto'
+              height: isMobile ? '40rem' : 'auto', fontFamily: 'inhert',
           }}>
         <p>{cardContents[currentCardIndex]}</p>
       </div>
