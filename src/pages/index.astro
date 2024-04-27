@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.jsx';
 import CardSwitcher from '../components/cardSwitcher.jsx'; // Adjust the import path according to your file structure
+import ExclusiveSelection from '../components/jobs.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 ---
@@ -95,7 +96,8 @@ import ReactDOM from 'react-dom';
 				imgPath="../../computerVision.png"
 			/>
 		</ul>
-		<CardSwitcher client:load />
+		<ExclusiveSelection client:load/>
+		<!-- <CardSwitcher client:load /> -->
 
 	</main>
 </Layout>
