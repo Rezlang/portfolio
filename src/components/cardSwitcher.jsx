@@ -9,7 +9,7 @@ const CardSwitcher = () => {
   const cardSwitch = [
     'NTopology', 'Software Engineering Intern',
     'RPI SCOREC', 'Undergraduate Research',
-    'Factset', 'Deep Learning Engineering Intern',
+    'Factset', 'Deep Learning Intern',
   ]
 
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -52,12 +52,12 @@ const CardSwitcher = () => {
             key={index} 
             onClick={() => setCurrentCardIndex(index)}
                 style={{
-                    cursor: 'pointer', padding: isMobile && index === currentCardIndex ? '0 10%' : '0 3%',
+                    cursor: 'pointer', padding: '0 3%', width: isMobile && index === currentCardIndex ? '40%' : '20%',
                     background: 'var(--card-background-purple)', borderRadius: '7px',
                     textAlign: 'center', boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
                     height: isMobile ? '5rem' : 'auto',
                     fontFamily: 'inherit', fontSize: '1rem',
-                    transition: 'padding 0.3s ease'
+                    transition: 'width 0.3s ease'
                 }}
             role="button"
             tabIndex={0}
