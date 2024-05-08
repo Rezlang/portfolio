@@ -1,0 +1,56 @@
+---
+import BaseLayout from './Layout.astro';
+import FileUpload from '../components/file-upload/file-upload.jsx';
+import { jsx } from '@emotion/react';
+import styled from '@emotion/styled';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+
+const handleSubmit = (files: File[]) => {
+  // Logic to create a new user...
+  console.log('Form submitted with:', files);
+};
+---
+
+<BaseLayout title={title}>
+  <main>
+    <div class="center-box">
+      <slot />
+    </div>
+    <div class="file-upload-box">
+      <FileUpload accept=".jpg,.png,.jpeg" label="Create New User" multiple client:load onSubmit={handleSubmit} />
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .center-box {
+    background-color: rgba(var(--card-background-grey));
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .file-upload-box {
+    background-color: rgba(var(--card-background-grey));
+    border-radius: 8px;
+    padding: 1rem;
+    max-width: 400px;
+    width: 100%;
+  }
+</style>
